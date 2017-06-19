@@ -10,14 +10,17 @@ Heap::Heap() {}
 
 Heap::Heap(std::vector<int> &seed)
 {
+	// Build heap from an array.
 	this->heap = &seed;
 	for (int i = calculateParent(size() - 1) ; i >= 0; i--) {
+		// Begin from parent of the last leaf.
 		siftDown(i);
 	}
 }
 
 
 void Heap::insert(int input) {
+	// Push element to the back of the vector to preserve completeness of the tree.
 	this->heap->push_back(input);
 	int index = size() -1;
 	siftUp(index);
@@ -25,6 +28,7 @@ void Heap::insert(int input) {
 
 
 void Heap::remove(int index) {
+	// Set item to be removed to max then extract it from the tree.
 	int max = std::numeric_limits<int>::max();
 	this->heap->at(index) = max;
 	siftUp(index);
@@ -33,11 +37,13 @@ void Heap::remove(int index) {
 
 
 int Heap::getMax() {
+	// Since this is a Binary-Max heap first element will always be the max.
 	return this->heap->at(0);
 }
 
 
 int Heap::extractMax() {
+	// Swap last leaf with the first and pop the last item(max). Then sift down the first item.
 	int temp = this->heap->at(0);
 	this->heap->at(0) = this->heap->at(size() -1);
 	this->heap->pop_back();
@@ -47,6 +53,7 @@ int Heap::extractMax() {
 
 
 void Heap::changePriority(int index, int newValue) {
+	// Change priority and adjuct accordingly.
 	this->heap->at(index) = newValue;
 	siftDown(index);
 	siftUp(index);
@@ -59,6 +66,7 @@ int Heap::size() {
 
 
 void Heap::siftUp(int index) {
+	// Compare child with parent if parent is smaller swap with child.
 	if (index == 0 || size() == 0 || index > size()) return;
 
 	int temp = this->heap->at(index);
@@ -71,6 +79,7 @@ void Heap::siftUp(int index) {
 
 
 void Heap::siftDown(int index) {
+	// Compare with children if smaller then any swap with the biggest child all the way to the bottom.
 	if (size() == 0 || index > size()) return;
 
 	int temp = this->heap->at(index);
@@ -101,6 +110,7 @@ void Heap::siftDown(int index) {
 
 
 void Heap::siftDown(int index, int maxIndex) {
+	// Same function with a custom upperbound.
 	if (maxIndex == 0 || index > maxIndex || maxIndex > size() -1) return;
 
 	int temp = this->heap->at(index);
