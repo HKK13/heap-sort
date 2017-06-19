@@ -14,8 +14,6 @@ public:
 	void remove(int index);
 	void changePriority(int index, int newValue);
 
-	void print();
-
 	void siftDown(int child);
 	void siftDown(int child, int maxIndex);
 	void siftUp(int child);
