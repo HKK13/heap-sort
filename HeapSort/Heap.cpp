@@ -140,15 +140,15 @@ void Heap::siftDown(int index, int maxIndex) {
 }
 
 int Heap::calculateParent(int index) {
-	return index == 0 ? 0 : (int)((index + 1) / 2) - 1; // Since our array is 0-based, handle it like 1-based then convert it. Parent = Lower(index/2)
+	return (int) (index - 1) / 2; // Parent = Lower(index/2) for 1-based index.
 }
 
 
 int Heap::calculateLeftChild(int index) {
-	return ((index + 1) * 2) - 1; // 2i for 1-based index.
+	return 2 * index + 1; // 2i for 1-based index.
 }
 
 
 int Heap::calculateRightChild(int index) {
-	return ((index + 1) * 2); // 2i + 1 for 1-based index.
+	return 2 * index + 2; // 2i + 1 for 1-based index.
 }
