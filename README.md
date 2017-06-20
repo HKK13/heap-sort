@@ -1,1 +1,1 @@
-# In-Memory Heap Sort
+# In-Place Heap Sort

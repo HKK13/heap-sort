@@ -5,7 +5,7 @@
 
 void HeapSort::sort(std::vector<int>& unorderedArr)
 {
-	// In memory heap sort.
+	// In place heap sort.
 	Heap heap = Heap(unorderedArr);
 
 	int temp;
